@@ -1,8 +1,12 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:dw3_pizza_delivery_api/application/config/database_connection_configuration.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
+
+import 'package:dotenv/dotenv.dart' show load, env;
 
 // For Google Cloud Run, set _hostname to '0.0.0.0'.
 const _hostname = 'localhost';
@@ -32,3 +36,20 @@ void main(List<String> args) async {
 
 shelf.Response _echoRequest(shelf.Request request) =>
     shelf.Response.ok('Request for "${request.url}"');
+
+Future<void> loadConfigApplication() async {
+  await load(); // Load dotenv variables
+
+  // Creates database connection config - [ mysql docker]
+  final databaseConfig = DatabaseConnection(
+    host: Platform.environment['DATABASE_HOST'] ?? env['databaseHost'],
+    user: Platform.environment['DATABASE_USER'] ?? env['databaseUser'],
+    port: Platform.environment['DATABASE_PORT'] ?? env['databasePort'],
+    password:
+        Platform.environment['DATABASE_PASSWORD'] ?? env['databasePassword'],
+    databaseName: Platform.environment['DATABASE_NAME'] ?? env['databaseName'],
+  );
+
+  // Creates a singleton for the connection
+  GetIt.I.registerSingleton(databaseConfig);
+}

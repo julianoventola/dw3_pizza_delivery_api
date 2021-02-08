@@ -41,7 +41,7 @@ Future<void> loadConfigApplication() async {
   await load(); // Load dotenv variables
 
   // Creates database connection config - [ mysql docker]
-  final databaseConfig = DatabaseConnection(
+  final databaseConfig = DatabaseConnectionConfiguration(
     host: Platform.environment['DATABASE_HOST'] ?? env['databaseHost'],
     user: Platform.environment['DATABASE_USER'] ?? env['databaseUser'],
     port: Platform.environment['DATABASE_PORT'] ?? env['databasePort'],

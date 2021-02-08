@@ -1,11 +1,11 @@
-class DatabaseConnection {
+class DatabaseConnectionConfiguration {
   final String host;
   final String user;
   final String port;
   final String password;
   final String databaseName;
 
-  DatabaseConnection({
+  DatabaseConnectionConfiguration({
     this.host,
     this.user,
     this.port,

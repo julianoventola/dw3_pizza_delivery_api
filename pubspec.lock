@@ -63,7 +63,7 @@ packages:
       name: build_runner
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.11.1"
+    version: "1.10.11"
   build_runner_core:
     dependency: transitive
     description:
@@ -190,6 +190,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.0"
+  http_methods:
+    dependency: transitive
+    description:
+      name: http_methods
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -240,12 +247,19 @@ packages:
     source: hosted
     version: "0.6.2"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.1"
+  json_serializable:
+    dependency: "direct dev"
+    description:
+      name: json_serializable
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.5.1"
   logging:
     dependency: transitive
     description:
@@ -351,6 +365,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.7.9"
+  shelf_router:
+    dependency: "direct main"
+    description:
+      name: shelf_router
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.7.4"
+  shelf_router_generator:
+    dependency: "direct dev"
+    description:
+      name: shelf_router_generator
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.7.2+4"
   shelf_web_socket:
     dependency: transitive
     description:

@@ -30,6 +30,7 @@ void main(List<String> args) async {
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
       .addMiddleware(cors())
+      .addMiddleware(defaultContentType('application/json;charset=utf-8'))
       .addHandler(_echoRequest);
 
   var server = await io.serve(handler, _hostname, port);

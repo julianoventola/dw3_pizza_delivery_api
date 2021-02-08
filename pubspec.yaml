@@ -15,6 +15,6 @@ dependencies:
   get_it: ^5.0.3
 
 dev_dependencies:
-  build_runner: ^1.11.1
+  build_runner: ^1.10.1
   pedantic: ^1.9.0
   injectable_generator: ^1.0.7

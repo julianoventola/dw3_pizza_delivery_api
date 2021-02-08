@@ -1,4 +1,4 @@
-import 'dart:convert';
+//import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
@@ -48,7 +48,7 @@ void main(List<String> args) async {
 }
 
 Future<void> loadConfigApplication() async {
-  /*await load(); // Load dotenv variables
+  await load(); // Load dotenv variables
 
   // Creates database connection config - [ mysql docker]
   final databaseConfig = DatabaseConnectionConfiguration(
@@ -61,5 +61,5 @@ Future<void> loadConfigApplication() async {
   );
 
   // Creates a singleton for the connection
-  GetIt.I.registerSingleton(databaseConfig);*/
+  GetIt.I.registerSingleton(databaseConfig);
 }

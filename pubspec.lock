@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "0.10.11"
   get_it:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: get_it
       url: "https://pub.flutter-io.cn"

@@ -12,7 +12,7 @@ dependencies:
   mysql1: ^0.17.1
   injectable: ^1.0.7
   dotenv: ^2.0.0
-  get_it: ^5.0.6
+  get_it: ^5.0.3
 
 dev_dependencies:
   build_runner: ^1.11.1

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:dw3_pizza_delivery_api/application/config/database_connection_configuration.dart';
+import 'package:dw3_pizza_delivery_api/application/middlewares/middlewares.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
@@ -28,6 +29,7 @@ void main(List<String> args) async {
 
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
+      .addMiddleware(cors())
       .addHandler(_echoRequest);
 
   var server = await io.serve(handler, _hostname, port);

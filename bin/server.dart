@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
@@ -8,6 +9,7 @@ import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
 
 import 'package:dotenv/dotenv.dart' show load, env;
+import 'package:shelf_router/shelf_router.dart';
 
 // For Google Cloud Run, set _hostname to '0.0.0.0'.
 const _hostname = 'localhost';
@@ -27,21 +29,23 @@ void main(List<String> args) async {
     return;
   }
 
+  final appRouter = Router();
+  appRouter.add('GET', '/hello', (request) {
+    return shelf.Response.ok(jsonEncode({'Tag1': 'Tag1', 'Tag2': 'Juliano'}));
+  });
+
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
       .addMiddleware(cors())
       .addMiddleware(defaultContentType('application/json;charset=utf-8'))
-      .addHandler(_echoRequest);
+      .addHandler(appRouter);
 
   var server = await io.serve(handler, _hostname, port);
   print('Serving at http://${server.address.host}:${server.port}');
 }
 
-shelf.Response _echoRequest(shelf.Request request) =>
-    shelf.Response.ok('Request for "${request.url}"');
-
 Future<void> loadConfigApplication() async {
-  await load(); // Load dotenv variables
+  /*await load(); // Load dotenv variables
 
   // Creates database connection config - [ mysql docker]
   final databaseConfig = DatabaseConnectionConfiguration(
@@ -54,5 +58,5 @@ Future<void> loadConfigApplication() async {
   );
 
   // Creates a singleton for the connection
-  GetIt.I.registerSingleton(databaseConfig);
+  GetIt.I.registerSingleton(databaseConfig);*/
 }

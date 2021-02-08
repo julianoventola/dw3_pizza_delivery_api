@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:dw3_pizza_delivery_api/application/config/database_connection_configuration.dart';
 import 'package:dw3_pizza_delivery_api/application/middlewares/middlewares.dart';
+import 'package:dw3_pizza_delivery_api/application/routes/router_configure.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
@@ -30,9 +31,11 @@ void main(List<String> args) async {
   }
 
   final appRouter = Router();
-  appRouter.add('GET', '/hello', (request) {
-    return shelf.Response.ok(jsonEncode({'Tag1': 'Tag1', 'Tag2': 'Juliano'}));
-  });
+  RouterConfigure(appRouter).configure();
+
+  // appRouter.add('GET', '/hello', (request) {
+  //   return shelf.Response.ok(jsonEncode({'Tag1': 'Tag1', 'Tag2': 'Juliano'}));
+  // });
 
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())

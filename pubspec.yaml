@@ -15,5 +15,6 @@ dependencies:
   dotenv: ^2.0.0
 
 dev_dependencies:
+  build_runner: ^1.11.1
   pedantic: ^1.9.0
   injectable_generator: ^1.0.7

@@ -30,9 +30,11 @@ class UserController {
     } catch (e) {
       print(e);
       return Response.internalServerError(
-          body: jsonEncode({
-        'message': 'Erro ao registrar novo usuário',
-      }));
+          body: jsonEncode(
+        {
+          'message': 'Erro ao registrar novo usuário',
+        },
+      ));
     }
   }
 

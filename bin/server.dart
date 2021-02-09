@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:dw3_pizza_delivery_api/application/config/database_connection_configuration.dart';
+import 'package:dw3_pizza_delivery_api/application/config/service_locator_config.dart';
 import 'package:dw3_pizza_delivery_api/application/middlewares/middlewares.dart';
 import 'package:dw3_pizza_delivery_api/application/routes/router_configure.dart';
 import 'package:get_it/get_it.dart';
@@ -64,4 +65,5 @@ Future<void> loadConfigApplication() async {
 
   // Creates a singleton for the connection
   GetIt.I.registerSingleton(databaseConfig);
+  configureDependencies();
 }

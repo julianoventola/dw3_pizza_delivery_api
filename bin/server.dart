@@ -30,6 +30,8 @@ void main(List<String> args) async {
     return;
   }
 
+  await loadConfigApplication();
+
   final appRouter = Router();
   RouterConfigure(appRouter).configure();
 

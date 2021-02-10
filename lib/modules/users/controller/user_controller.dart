@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dw3_pizza_delivery_api/application/exceptions/user_notfound_exception.dart';
+import 'package:dw3_pizza_delivery_api/modules/users/controller/mappers/user_login_view_model_mapper.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
@@ -33,6 +35,31 @@ class UserController {
           body: jsonEncode(
         {
           'message': 'Erro ao registrar novo usuário',
+        },
+      ));
+    }
+  }
+
+  @Route.post('/auth')
+  Future<Response> login(Request request) async {
+    try {
+      final requestMap = jsonDecode(await request.readAsString());
+      final viewModel = UserLoginViewModelMapper(requestMap).mapper();
+      final user = await _service.login(viewModel);
+      return Response.ok(jsonEncode({
+        'id': user.id,
+        'name': user.name,
+        'email': user.email,
+      }));
+    } on UserNotFoundException catch (e) {
+      print(e);
+      return Response.forbidden('');
+    } catch (e) {
+      print(e);
+      return Response.internalServerError(
+          body: jsonEncode(
+        {
+          'message': 'Erro ao logar usuário',
         },
       ));
     }

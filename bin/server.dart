@@ -26,7 +26,6 @@ void main(List<String> args) async {
 
   if (port == null) {
     stdout.writeln('Could not parse port value "$portStr" into a number.');
-    // 64: command line usage error
     exitCode = 64;
     return;
   }
@@ -35,10 +34,6 @@ void main(List<String> args) async {
 
   final appRouter = Router();
   RouterConfigure(appRouter).configure();
-
-  // appRouter.add('GET', '/hello', (request) {
-  //   return shelf.Response.ok(jsonEncode({'Tag1': 'Tag1', 'Tag2': 'Juliano'}));
-  // });
 
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
